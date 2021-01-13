@@ -5,14 +5,26 @@
 using namespace std;
 using namespace std::chrono;
 
-int Main::GetChrono() {
+Random::Random() {
+  this->precission = 6;
+}
+
+Random::Random(int precission) {
+  this->precission = precission;
+}
+
+int Random::GetPrecission() {
+  return this->precission;
+}
+
+int Random::GetChrono() {
   milliseconds t2 = duration_cast< milliseconds >(
     system_clock::now().time_since_epoch()
   );
   return t2.count();
 }
 
-int Main::GetOne() {
+int Random::GetOneNumber() {
   int t = this->GetChrono();
   int i;
   for(i = 0;; i ++) {
@@ -25,11 +37,12 @@ int Main::GetOne() {
   return (int) is.back();
 };
 
-long double Main::Rand() {
-  int t1 = this->GetChrono();
+typedef long double ldo;
+
+ldo Random::Rand() {
   string res = "0.";
-  for(int i = 0; i < 12; i ++) {
-    res += this->GetOne();
+  for(long i = 0; i < this->GetPrecission(); i ++) {
+    res += this->GetOneNumber();
   }
-  return stold(res);
+  return atof(res.c_str());
 }

@@ -31,7 +31,7 @@ struct tColor {
 class Draw {
   public:
     Draw(int width, int height);
-    void DrawPoint(int x, int y, tColor color);
+    void DrawPoint(int x, int y);
     int width;
     int height;
     cv::Mat image;
